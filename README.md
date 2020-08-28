@@ -1,148 +1,146 @@
-# IOHK Documentation Gatsby Starter
+# gatsby-gitbook-starter
 
-[__EXAMPLE__ - gatsby-starter-iohk-docs.netlify.app](https://gatsby-starter-iohk-docs.netlify.app/)
+Kick off your project with this starter to create a powerful/flexible docs/tutorial web apps.
 
-The [Gatsby](https://www.gatsbyjs.org/) starter template used by [IOHK](https://iohk.io/) to build documentation web assets. Built on [gatsby-starter-iohk-default](https://github.com/input-output-hk/gatsby-starter-iohk-default). Check out [gatsby-starter-iohk-default](https://github.com/input-output-hk/gatsby-starter-iohk-default) for additional documentation.
+![gatsby-gitbook-starter](https://graphql-engine-cdn.hasura.io/learn-hasura/gatsby-gitbook-starter/assets/documentation_app_blog.png)
+
+## Motivation
+
+We wanted to create a [GraphQL tutorial](https://learn.hasura.io) series. The content would be written by developers for various languages/frameworks and what better than writing it in Markdown! And since this is a tutorial series we also needed rich embeds, syntax highlighting and more customisations.
+
+We also wanted to serve these tutorials in sub paths of [learn.hasura.io](https://learn.hasura.io). To serve all these requirements, we decided to use Gatsby + MDX (Markdown + JSX) to extend markdown and used a neat consistent theme like the one at [GitBook](https://www.gitbook.com) and deployed as docker containers.
+
+## 🔥 Features
+- Write using Markdown / [MDX](https://github.com/mdx-js/mdx)
+- GitBook style theme
+- Syntax Highlighting using Prism [`Bonus`: Code diff highlighting]
+- Search Integration with Algolia
+- Progressive Web App, Works Offline
+- Google Analytics Integration
+- Automatically generated sidebar navigation, table of contents, previous/next
+- Dark Mode toggle
+- Edit on Github
+- Fully customisable
+- Rich embeds and live code editor using MDX
+- Easy deployment: Deploy on Netlify / Now.sh / Docker
+
+## 🔗 Live Demo
+
+Here's a [live demo](https://learn.hasura.io/graphql/react)
+
+## 🚀 Quickstart
+
+Get started by running the following commands:
 
 ```
-gatsby new gatsby-starter-iohk-docs https://github.com/input-output-hk/gatsby-starter-iohk-docs
+$ git clone git@github.com:hasura/gatsby-gitbook-starter.git
+$ cd gatsby-gitbook-starter
+$ npm install
+$ npm start
 ```
 
-## Features
+Visit `http://localhost:8000/` to view the app.
 
-Everything that [gatsby-starter-iohk-default](https://github.com/input-output-hk/gatsby-starter-iohk-default) provides plus:
+## 🔧 Configure
 
-* CMS enabled hierarchial documentation
-* Embed custom React components in markdown articles
+Write markdown files in `content` folder.
 
-## Configuration
+Open `config.js` for templating variables. Broadly configuration is available for `gatsby`, `header`, `sidebar` and `siteMetadata`.
 
-See [gatsby-starter-iohk-default](https://github.com/input-output-hk/gatsby-starter-iohk-default) for full configuration. In addition to the default starter documentation the following config is available.
+- `gatsby` config for global configuration like 
+    - `pathPrefix` - Gatsby Path Prefix
+    - `siteUrl` - Gatsby Site URL
+    - `gaTrackingId` - Google Analytics Tracking ID
 
-| Option | Notes |
-| ------ | ----- |
-| gitHubRepository | Optional string reference to the repository. If it is provided then the "Report an issue" link will be displayed on articles. |
+- `header` config for site header configuration like
+    - `title` - The title that appears on the top left
+    - `githubUrl` - The Github URL for the docs website
+    - `helpUrl` - Help URL for pointing to resources
+    - `tweetText` - Tweet text
+    - `links` - Links on the top right
+    - `search` - Enable search and [configure Algolia](https://www.gatsbyjs.org/docs/adding-search-with-algolia/)
 
-## Pages
+- `sidebar` config for navigation links configuration
+    - `forcedNavOrder` for left sidebar navigation order. It should be in the format "/<filename>"
+    - `frontLine` - whether to show a front line at the beginning of a nested menu.(Collapsing capability would be turned of if this option is set to true)
+    - `links` - Links on the bottom left of the sidebar
+    - `ignoreIndex` - Set this to true if the index.md file shouldn't appear on the left sidebar navigation. Typically this can be used for landing pages.
 
-The documentation starter consists of only 3 static pages.
+- `siteMetadata` config for website related configuration
+    - `title` - Title of the website
+    - `description` - Description of the website
+    - `ogImage` - Social Media share og:image tag
+    - `docsLocation` - The Github URL for Edit on Github
 
-* `src/pages/index.js` the home page
-* `src/pages/404.js` 404 page
-* `src/pages/search.js` search page
+- For sub nesting in left sidebar, create a folder with the same name as the top level `.md` filename and the sub navigation is auto-generated. The sub navigation is alphabetically ordered.
 
-All other pages are generated from articles which can be found in `resources/content/articles/<language>`. The articles have a flat file structure to accomodate Netlify CMS. Articles are linked hierarchically to parent articles to create a navigation structure. Articles were designed to be added via the CMS.
+### Algolia Configuration
 
-Each language can contain different articles, meaning the navigation structure does not need to be mirrored across different languages.
+To setup Algolia, go to `config.js` and update the `search` object to look like the one below:
 
-An example article: saved as `resources/content/articles/en/introduction.md`
+```...,
+	"search": {
+		"enabled": true,
+		"indexName": "MY_INDEX_NAME",
+		"algoliaAppId": process.env.GATSBY_ALGOLIA_APP_ID,
+		"algoliaSearchKey": process.env.GATSBY_ALGOLIA_SEARCH_KEY,
+		"algoliaAdminKey": process.env.ALGOLIA_ADMIN_KEY
+	},
+```
+
+Values for Algolia App ID, Search Key, and Admin Key can be obtained from Algolia Dashboard with the right set of permissions. Replace `MY_INDEX_NAME` with the Algolia Index name of your choice. To build the Algolia index, you need to run `npm run build` which will do a gatsby build along with content indexing in Algolia.
+
+### Progressive Web App, Offline
+
+To enable PWA, go to `config.js` and update the `pwa` object to look like the one below:
+
+```
+   "pwa": {
+        "enabled": false, // disabling this will also remove the existing service worker.
+        "manifest": {
+            "name": "Gatsby Gitbook Starter",
+            "short_name": "GitbookStarter",
+            "start_url": "/",
+            "background_color": "#6b37bf",
+            "theme_color": "#6b37bf",
+            "display": "standalone",
+            "crossOrigin": "use-credentials",
+            icons: [
+                {
+                    src: "src/pwa-512.png",
+                    sizes: `512x512`,
+                    type: `image/png`,
+                },
+            ],
+        },
+    }
+```
+
+## Live Code Editor
+
+To render react components for live editing, add the `react-live=true` to the code section. For example:
+
+```javascript react-live=true
+<button>Edit my text</button>
+```
+
+In the above code, just add `javascript react-live=true` after the triple quote ``` to start rendering react components that can be edited by users.
+
+## 🤖 SEO friendly
+
+This is a static site and comes with all the SEO benefits. Configure meta tags like title and description for each markdown file using MDX Frontmatter
 
 ```markdown
 ---
-title: Introduction
-parent: ''
-order: 1
-last_updated: "2020-04-20T15:40:10+01:00"
----
-# Introduction
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac pretium metus. In tempus diam non lobortis tristique. Integer maximus fermentum vehicula. Vestibulum sodales diam maximus ipsum lobortis maximus. Praesent id mi augue. Vestibulum id eros id dolor gravida condimentum. Ut a nisi arcu. Suspendisse congue ligula ipsum, vitae consectetur nisl pellentesque ac. Integer sagittis turpis tincidunt diam laoreet, eu venenatis tortor tempus. Nulla iaculis scelerisque mauris, ut finibus nunc porta vitae. Ut aliquam sem odio, a lacinia urna varius porta. Nunc eget eleifend turpis. Nam vitae turpis nisi. Sed quis ligula tellus. Praesent nec augue faucibus, luctus turpis lacinia, vulputate metus.
-
-```
-
-* The articles title is used in the navigation as well as for the page title on top level navigation items.
-* In this article there is no parent meaning this item will appear in the top level navigation as `<a href="/en/introduction/">Introduction</a>`.
-* The order is set to 1. Order is an arbitrary number used for sorting navigation items on the same level. Where order is the same they are sorted alphabetically on title.
-* Last updated is an ISO 8601 datetime string with UTC offset. This is converted to a UTC datetime string on the article page.
-* Lastly the articles content is parsed as markdown. When an article has no markdown a page is not generated, however it will appear in the navigation. For top level navigation items it will link to the first child article with content. For sub navigation items an accordion will be used.
-
-To create a child page on `introduction` we can simply reference the parent as `introduction`:
-
-```markdown
----
-title: Overview
-parent: introduction
-order: 1
-last_updated: "2020-04-20T15:40:10+01:00"
----
-# Overview
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac pretium metus. In tempus diam non lobortis tristique. Integer maximus fermentum vehicula. Vestibulum sodales diam maximus ipsum lobortis maximus. Praesent id mi augue. Vestibulum id eros id dolor gravida condimentum. Ut a nisi arcu. Suspendisse congue ligula ipsum, vitae consectetur nisl pellentesque ac. Integer sagittis turpis tincidunt diam laoreet, eu venenatis tortor tempus. Nulla iaculis scelerisque mauris, ut finibus nunc porta vitae. Ut aliquam sem odio, a lacinia urna varius porta. Nunc eget eleifend turpis. Nam vitae turpis nisi. Sed quis ligula tellus. Praesent nec augue faucibus, luctus turpis lacinia, vulputate metus.
-
-```
-
-## Redirects
-
-To redirect URL's to a particular article the `redirects` field can be used:
-
-```
----
-title: Introduction
-parent: ''
-order: 1
-last_updated: "2020-04-20T15:40:10+01:00"
-redirects:
-  - from: /another-page/
-    type: 301
+title: "Title of the page"
+metaTitle: "Meta Title Tag for this page"
+metaDescription: "Meta Description Tag for this page"
 ---
 ```
 
-This will result in a redirect from `/another-page/` to `/introduction/` with a 301 type redirect. The redirect is written to `netlify.toml` on build and can be emulated by running `npm run build && npm run serve`.
+Canonical URLs are generated automatically.
 
-## Embed YouTube videos in markdown
+## ☁️ Deploy
 
-YouTube videos are traditionally embedded with html or an image linking out to the YouTube video. However the markdown is parsed to replace specific syntax with an embedded YouTube video as follows:
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/hasura/gatsby-gitbook-starter)
 
-```
-<!-- embed youtube/video_id -->
-```
-
-This will replace the comment above with the embedded YouTube video of id `video_id`.
-
-In the wider context of the full markdown file this could look like:
-
-```markdown
----
-title: Overview
-parent: introduction
-order: 1
-last_updated: "2020-04-20T15:40:10+01:00"
----
-# Overview
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac pretium metus. In tempus diam non lobortis tristique. Integer maximus fermentum vehicula. Vestibulum sodales diam maximus ipsum lobortis maximus. Praesent id mi augue. Vestibulum id eros id dolor gravida condimentum. Ut a nisi arcu. Suspendisse congue ligula ipsum, vitae consectetur nisl pellentesque ac. Integer sagittis turpis tincidunt diam laoreet, eu venenatis tortor tempus. Nulla iaculis scelerisque mauris, ut finibus nunc porta vitae. Ut aliquam sem odio, a lacinia urna varius porta. Nunc eget eleifend turpis. Nam vitae turpis nisi. Sed quis ligula tellus. Praesent nec augue faucibus, luctus turpis lacinia, vulputate metus.
-
-<!-- embed youtube/video_id -->
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac pretium metus. In tempus diam non lobortis tristique. Integer maximus fermentum vehicula. Vestibulum sodales diam maximus ipsum lobortis maximus. Praesent id mi augue. Vestibulum id eros id dolor gravida condimentum. Ut a nisi arcu. Suspendisse congue ligula ipsum, vitae consectetur nisl pellentesque ac. Integer sagittis turpis tincidunt diam laoreet, eu venenatis tortor tempus. Nulla iaculis scelerisque mauris, ut finibus nunc porta vitae. Ut aliquam sem odio, a lacinia urna varius porta. Nunc eget eleifend turpis. Nam vitae turpis nisi. Sed quis ligula tellus. Praesent nec augue faucibus, luctus turpis lacinia, vulputate metus.
-
-```
-
-## Custom React components in markdown
-
-Sometimes markdown alone isn't enough. In order to allow for custom React components whilst maintaining the navigation and documentation structure, custom React components can be injected into markdown. This is done using specific syntax and referencing the component to be included as follows:
-
-```
-<!-- include components/ExampleComponent -->
-```
-
-This will be replaced the component `ExampleComponent` in this case `src/components/MarkdownComponents/ExampleComponent`. To extend this for new components simply create a component and export it from `src/components/MarkdownComponents/index.js`. `ExampleComponent` is a reference to the named export in `src/components/MarkdownComponents/index.js`.
-
-In the wider context of the full markdown file this could look like:
-
-```markdown
----
-title: Overview
-parent: introduction
-order: 1
-last_updated: "2020-04-20T15:40:10+01:00"
----
-# Overview
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac pretium metus. In tempus diam non lobortis tristique. Integer maximus fermentum vehicula. Vestibulum sodales diam maximus ipsum lobortis maximus. Praesent id mi augue. Vestibulum id eros id dolor gravida condimentum. Ut a nisi arcu. Suspendisse congue ligula ipsum, vitae consectetur nisl pellentesque ac. Integer sagittis turpis tincidunt diam laoreet, eu venenatis tortor tempus. Nulla iaculis scelerisque mauris, ut finibus nunc porta vitae. Ut aliquam sem odio, a lacinia urna varius porta. Nunc eget eleifend turpis. Nam vitae turpis nisi. Sed quis ligula tellus. Praesent nec augue faucibus, luctus turpis lacinia, vulputate metus.
-
-<!-- include components/ExampleComponent -->
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac pretium metus. In tempus diam non lobortis tristique. Integer maximus fermentum vehicula. Vestibulum sodales diam maximus ipsum lobortis maximus. Praesent id mi augue. Vestibulum id eros id dolor gravida condimentum. Ut a nisi arcu. Suspendisse congue ligula ipsum, vitae consectetur nisl pellentesque ac. Integer sagittis turpis tincidunt diam laoreet, eu venenatis tortor tempus. Nulla iaculis scelerisque mauris, ut finibus nunc porta vitae. Ut aliquam sem odio, a lacinia urna varius porta. Nunc eget eleifend turpis. Nam vitae turpis nisi. Sed quis ligula tellus. Praesent nec augue faucibus, luctus turpis lacinia, vulputate metus.
-
-```
