@@ -1,8 +1,7 @@
 import { injectGlobal } from 'emotion';
 
 export const baseStyles = injectGlobal`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300;700&display=swap');
   * {
     margin: 0;
     padding: 0;
@@ -24,7 +23,7 @@ export const baseStyles = injectGlobal`
   }
   html,
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Roboto Light', 'Oxygen',
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Chivo', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 
@@ -38,7 +37,7 @@ export const baseStyles = injectGlobal`
   }
 
   body {
-    font-family: 'Roboto';
+    font-family: 'Chivo';
   }
   .visibleMobile {
     display: none;
@@ -76,7 +75,7 @@ export const baseStyles = injectGlobal`
     border-radius: 1px;
     margin: 0 auto;
     margin-top: 4px;
-    background-color: #001934;
+    background-color: rgba(0, 51, 173, 1);
   }
   .navBarToggle .iconBar:first-child {
     margin-top: 0px;
@@ -154,7 +153,7 @@ export const baseStyles = injectGlobal`
     border: none;
   }
   .formElement svg path {
-    fill: #2fd2c5;
+    fill: rgba(255, 85, 83, 1);
   }
   .searchInput {
     width: 100%;
@@ -227,7 +226,6 @@ export const baseStyles = injectGlobal`
     line-height: 1.5;
     font-weight: 300;
     color: #fff !important;
-    margin-top: 16px;
     text-transform: uppercase;
   }
   .headerTitle a {
@@ -244,7 +242,7 @@ export const baseStyles = injectGlobal`
   }
 
   .logoContent {
-    font-family: 'Roboto';
+    font-family: 'Chivo';
     margin-left: 16px;
     font-size: 28px;
     line-height: 1.5;
@@ -257,7 +255,7 @@ export const baseStyles = injectGlobal`
     padding: 0 !important;
   }
   .navBarDefault {
-    background-color: #001934;
+    background-color: rgba(0, 51, 173, 1);
     border-radius: 0;
     border-top: 0;
     margin-bottom: 0;
@@ -297,7 +295,7 @@ export const baseStyles = injectGlobal`
     -webkit-overflow-scrolling: touch;
   }
   .navBarUL li a {
-    font-family: 'Roboto';
+    font-family: 'Chivo';
     color: #fff !important;
     font-size: 16px;
     font-weight: 500;
@@ -371,10 +369,10 @@ export const baseStyles = injectGlobal`
     /* box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); */
     background-color: #f8f8f8;
     padding: 18px 16px;
-    font-family: 'Poppins';
+    font-family: 'Chivo';
     font-size: 18px;
     font-weight: 600;
-    color: #001934;
+    color: rgba(0, 51, 173, 1);
     display: flex;
     align-items: center;
   }
@@ -384,19 +382,19 @@ export const baseStyles = injectGlobal`
   }
 
   .sidebarTitle a {
-    color: #001934;
+    color: rgba(0, 51, 173, 1);
   }
 
-  .greenCircle {
+  .accentCircle {
     width: 8px;
     height: 8px;
-    background-color: #1cd3c6;
+    background-color: rgba(255, 85, 83, 1);
     border-radius: 50%;
     margin: 0 12px;
   }
 
   .headerNav {
-    font-family: 'Roboto';
+    font-family: 'Chivo';
     padding: 0px 24px;
     color: #001933;
     font-size: 16px;
@@ -450,7 +448,7 @@ export const baseStyles = injectGlobal`
   }
 
   .hideFrontLine .active > a {
-    background-color: #1ed3c6;
+    background-color: rgba(82, 129, 247, 1);
     color: #fff !important;
   }
   .firstLevel ul li .collapser svg path {
@@ -508,7 +506,7 @@ export const baseStyles = injectGlobal`
     border-color: rgb(230, 236, 241) !important;
     border-style: solid none solid solid;
     border-width: 1px 0px 1px 1px;
-    background-color: #1ed3c6 !important;
+    background-color: rgba(82, 129, 247, 1) !important;
     color: #fff;
   }
 
@@ -734,13 +732,13 @@ export const baseStyles = injectGlobal`
 
   @media (max-width: 767px) {
     .formElement svg path {
-      fill: #001934;
+      fill: rgba(0, 51, 173, 1);
     }
     .visibleMobileView {
       display: block !important;
     }
     .searchInput {
-      color: #001934;
+      color: rgba(0, 51, 173, 1);
     }
     .socialWrapper {
       position: absolute;
