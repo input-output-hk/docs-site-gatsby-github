@@ -50,14 +50,14 @@ const config = {
     frontline: false,
     ignoreIndex: true,
     title:
-      "<a href='https://cardano.org/why' target='_blank' rel='noopener noreferrer'>Cardano </a><div class='accentCircle'></div><a href='https://www.haskell.org/' target='_blank' rel='noopener noreferrer'>Haskell</a>",
+      "<a href='https://why.cardano.org' target='_blank' rel='noopener noreferrer'>Cardano </a><div class='accentCircle'></div><a href='https://www.haskell.org/' target='_blank' rel='noopener noreferrer'>Haskell</a>",
   },
   siteMetadata: {
     title: 'Cardano Documentation',
     description: 'Documentation for the Cardano ecosystem ',
     ogImage: null,
     docsLocation: 'https://cardano.org',
-    favicon: 'src/pwa-512.png',
+    favicon: 'pwa-512.png',
   },
   pwa: {
     enabled: false, // disabling this will also remove the existing service worker.
@@ -65,13 +65,13 @@ const config = {
       name: 'Cardano Documention',
       short_name: 'Cardano Docs',
       start_url: '/',
-      background_color: '#6b37bf',
-      theme_color: '#6b37bf',
+      background_color: '#1d1e21',
+      theme_color: '#5281f7',
       display: 'standalone',
       crossOrigin: 'use-credentials',
       icons: [
         {
-          src: 'src/pwa-512.png',
+          src: 'pwa-512.png',
           sizes: `512x512`,
           type: `image/png`,
         },
