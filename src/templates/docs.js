@@ -65,10 +65,12 @@ export default class MDXRuntimeTest extends Component {
         }
       });
 
-    // meta tags
+    // template & meta tags
     const metaTitle = mdx.frontmatter.metaTitle;
 
     const metaDescription = mdx.frontmatter.metaDescription;
+
+    const isFullWidth = mdx.frontmatter.fullWidthTemplate
 
     let canonicalUrl = config.gatsby.siteUrl;
 
@@ -77,7 +79,7 @@ export default class MDXRuntimeTest extends Component {
     canonicalUrl = canonicalUrl + mdx.fields.slug;
 
     return (
-      <Layout {...this.props}>
+      <Layout {...this.props} useFwTemplate={isFullWidth}>
         <Helmet>
           {metaTitle ? <title>{metaTitle}</title> : null}
           {metaTitle ? <meta name="title" content={metaTitle} /> : null}
@@ -92,20 +94,24 @@ export default class MDXRuntimeTest extends Component {
         </Helmet>
         <div className={'titleWrapper'}>
           <StyledHeading>{mdx.fields.title}</StyledHeading>
-          <Edit className={'mobileView'}>
-            {docsLocation && (
-              <Link className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
-                <img src={gitHub} alt={'Github logo'} /> Edit on GitHub
-              </Link>
-            )}
-          </Edit>
+          {!isFullWidth &&
+            <Edit className={'mobileView'}>
+              {docsLocation && (
+                <Link className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
+                  <img src={gitHub} alt={'Github logo'} /> Edit on GitHub
+                </Link>
+              )}
+            </Edit>
+          }
         </div>
         <StyledMainWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </StyledMainWrapper>
-        <div className={'addPaddTopBottom'}>
-          <NextPrevious mdx={mdx} nav={nav} />
-        </div>
+        {!isFullWidth &&
+          <div className={'addPaddTopBottom'}>
+            <NextPrevious mdx={mdx} nav={nav} />
+          </div>
+        }
       </Layout>
     );
   }
@@ -135,6 +141,7 @@ export const pageQuery = graphql`
       frontmatter {
         metaTitle
         metaDescription
+        fullWidthTemplate
       }
     }
     allMdx {

@@ -31,9 +31,11 @@ const Wrapper = styled('div')`
 
 const Content = styled('main')`
   display: flex;
+  flex-direction:column;
   flex-grow: 1;
   margin: 0px 88px;
   padding-top: 3rem;
+  height:100vh;
   background: ${({ theme }) => theme.colors.background};
 
   table tr {
@@ -62,25 +64,32 @@ const RightSideBarWidth = styled('div')`
   width: 224px;
 `;
 
-const Layout = ({ children, location }) => (
+const Layout = ({ children, location, useFwTemplate }) => (
   <ThemeProvider location={location}>
     <MDXProvider components={mdxComponents}>
       <Wrapper>
-        <LeftSideBarWidth className={'hiddenMobile'}>
-          <Sidebar location={location} />
-        </LeftSideBarWidth>
-        {config.sidebar.title ? (
-          <div
-            className={'sidebarTitle sideBarShow'}
-            dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
-          />
-        ) : null}
-        <Content>
-          <MaxWidth>{children}</MaxWidth>
-        </Content>
-        <RightSideBarWidth className={'hiddenMobile'}>
-          <RightSidebar location={location} />
-        </RightSideBarWidth>
+        {useFwTemplate
+          ? <Content>
+              <MaxWidth>{children}</MaxWidth>
+            </Content>
+          : <>
+              <LeftSideBarWidth className={'hiddenMobile'}>
+                <Sidebar location={location} />
+              </LeftSideBarWidth>
+              {config.sidebar.title ? (
+                <div
+                  className={'sidebarTitle sideBarShow'}
+                  dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
+                />
+              ) : null}
+              <Content>
+                <MaxWidth>{children}</MaxWidth>
+              </Content>
+              <RightSideBarWidth className={'hiddenMobile'}>
+                <RightSidebar location={location} />
+              </RightSideBarWidth>
+            </>
+          }
       </Wrapper>
     </MDXProvider>
   </ThemeProvider>

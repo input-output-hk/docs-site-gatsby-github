@@ -1,9 +1,19 @@
 import * as React from 'react';
 
+const checkExternalLinks = (link) => {
+  console.log(link)
+  if (/^(https?:)?\/\//.test(link.href)) {
+    return `_blank`
+  } else {
+    return `_self`
+  }
+}
+
+
 const AnchorTag = ({ children: link, ...props }) => {
   if (link) {
     return (
-      <a href={props.href} target="_blank" rel="noopener noreferrer">
+      <a href={props.href} target={checkExternalLinks(props)} rel="noopener noreferrer">
         {link}
       </a>
     );
