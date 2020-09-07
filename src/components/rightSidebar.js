@@ -28,6 +28,7 @@ const SidebarLayout = ({ location }) => (
 
       if (allMdx.edges !== undefined && allMdx.edges.length > 0) {
         const navItems = allMdx.edges.map((item, index) => {
+          console.log('allMdx.edges item', item)
           let innerItems;
 
           if (item !== undefined) {

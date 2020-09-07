@@ -458,7 +458,7 @@ export const baseStyles = injectGlobal`
     color: #fff !important;
   }
   .firstLevel ul li .collapser svg path {
-    fill: #fff !important;
+    fill: #eee !important;
   }
   .active .collapser > svg > path {
     fill: #001933 !important;
@@ -474,7 +474,6 @@ export const baseStyles = injectGlobal`
   }
 
   .sideBarUL .item > a {
-    color: #1ED3C6;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -485,11 +484,6 @@ export const baseStyles = injectGlobal`
   }
 
   .showFrontLine .item > a:hover {
-    background-color: #001933;
-  }
-
-  .showFrontLine .active > a {
-    /* color: #fff; */
     background-color: #001933;
   }
 

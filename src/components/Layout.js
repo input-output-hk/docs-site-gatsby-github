@@ -17,6 +17,11 @@ const Wrapper = styled('div')`
     color: ${({ theme }) => theme.colors.text};
   }
 
+  .showFrontLine .active > a {
+    color: #fff !important;
+    background-color: ${({theme}) => theme.colors.primary};
+  }
+
   .sideBarUL .item > a:hover {
     background-color: rgba(82, 129, 247, 1);
     color: #fff !important;
@@ -35,7 +40,7 @@ const Content = styled('main')`
   flex-grow: 1;
   margin: 0px 88px;
   padding-top: 3rem;
-  height:100vh;
+  height:auto;
   background: ${({ theme }) => theme.colors.background};
 
   table tr {

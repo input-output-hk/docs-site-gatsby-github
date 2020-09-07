@@ -43,10 +43,11 @@ const config = {
       '/codeblock',
     ],
     collapsedNav: [
-      '/codeblock', // add trailing slash if enabled above
+      '/codeblock/', // add trailing slash if enabled above
+      '/section/'
     ],
     links: [{ text: 'Cardano.org', link: 'https://cardano.org' }],
-    frontline: false,
+    frontLine: false,
     ignoreIndex: true,
     title:
       "<a href='https://why.cardano.org' target='_blank' rel='noopener noreferrer'>Cardano </a><div class='accentCircle'></div><a href='https://www.haskell.org/' target='_blank' rel='noopener noreferrer'>Haskell</a>",

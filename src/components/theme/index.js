@@ -24,7 +24,7 @@ const darkTheme = {
     text: '#fff',
     preFormattedText: '#000',
     link: '#1ED3C6',
-    primary: 'rgba(0,51,173,1)'
+    primary: 'tomato'
   },
 };
 
