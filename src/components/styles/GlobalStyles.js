@@ -336,6 +336,12 @@ export const baseStyles = injectGlobal`
   .socialWrapper li a {
     display: contents;
   }
+
+  .hp_callout {
+    text-align: center;
+    max-width:45rem;
+    margin: 0 auto;
+  }
   .discordBtn, .twitterBtn {
     border-radius: 4px;
     border: solid 1px #d1d2d3;

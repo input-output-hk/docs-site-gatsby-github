@@ -12,6 +12,7 @@ const lightTheme = {
     text: '#3B454E',
     preFormattedText: 'rgb(245, 247, 249)',
     link: '#1000EE',
+    primary: 'rgba(0,51,173,1)'
   },
 };
 
@@ -23,6 +24,7 @@ const darkTheme = {
     text: '#fff',
     preFormattedText: '#000',
     link: '#1ED3C6',
+    primary: 'rgba(0,51,173,1)'
   },
 };
 

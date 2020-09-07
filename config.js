@@ -7,7 +7,7 @@ const config = {
   },
   header: {
     logo: 'https://ucarecdn.com/c1477310-438e-4141-bbf8-b866dd0b258a/CardanoRGB_LogoFullWhite.png',
-    logoLink: 'https://cardano.org',
+    logoLink: '/',
     title:
       "<p>DOCS</p>",
     githubUrl: 'https://github.com/hasura/gatsby-gitbook-boilerplate',
@@ -38,9 +38,8 @@ const config = {
   },
   sidebar: {
     forcedNavOrder: [
-      '/section',
-      '/foo',
       '/introduction', // add trailing slash if enabled above
+      '/section',
       '/codeblock',
     ],
     collapsedNav: [

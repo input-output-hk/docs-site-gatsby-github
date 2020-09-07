@@ -8,7 +8,16 @@ import NextPrevious from '../components/NextPrevious';
 import config from '../../config';
 import { Edit, StyledHeading, StyledMainWrapper } from '../components/styles/Docs';
 
+import styled from '@emotion/styled';
+
 const forcedNavOrder = config.sidebar.forcedNavOrder;
+
+const TitleElement = styled.div`
+  &.fullWidthPage {
+    max-width:60rem;
+    margin: 0 auto;
+  }
+`
 
 export default class MDXRuntimeTest extends Component {
   render() {
@@ -92,7 +101,8 @@ export default class MDXRuntimeTest extends Component {
           ) : null}
           <link rel="canonical" href={canonicalUrl} />
         </Helmet>
-        <div className={'titleWrapper'}>
+
+        <TitleElement className={`titleWrapper ${isFullWidth && `fullWidthPage`}`}>
           <StyledHeading>{mdx.fields.title}</StyledHeading>
           {!isFullWidth &&
             <Edit className={'mobileView'}>
@@ -103,10 +113,12 @@ export default class MDXRuntimeTest extends Component {
               )}
             </Edit>
           }
-        </div>
-        <StyledMainWrapper>
+        </TitleElement>
+
+        <StyledMainWrapper className={isFullWidth && `fullWidthPage`}>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </StyledMainWrapper>
+
         {!isFullWidth &&
           <div className={'addPaddTopBottom'}>
             <NextPrevious mdx={mdx} nav={nav} />
