@@ -47,7 +47,7 @@ const config = {
       '/section/'
     ],
     links: [{ text: 'Cardano.org', link: 'https://cardano.org' }],
-    frontLine: false,
+    frontLine: true,
     ignoreIndex: true,
     title:
       "<a href='https://why.cardano.org' target='_blank' rel='noopener noreferrer'>Cardano </a><div class='accentCircle'></div><a href='https://www.haskell.org/' target='_blank' rel='noopener noreferrer'>Haskell</a>",
