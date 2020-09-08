@@ -4,7 +4,7 @@ import isAbsoluteUrl from 'is-absolute-url';
 
 const Link = ({ to, ...props }) =>
   isAbsoluteUrl(to) ? (
-    <a href={to} {...props}>
+    <a href={to} {...props} target='_blank' rel='noopener noreferrer'>
       {props.children}
     </a>
   ) : (

@@ -10,18 +10,18 @@ const config = {
     logoLink: '/',
     title:
       "<p>DOCS</p>",
-    githubUrl: 'https://github.com/hasura/gatsby-gitbook-boilerplate',
+    githubUrl: 'https://github.com/input-output-hk/docs-site-gatsby-github',
     helpUrl: '',
     tweetText: '',
     social: `<li>
-		    <a href="https://twitter.com/hasurahq" target="_blank" rel="noopener">
+		    <a href="https://twitter.com/cardano" target="_blank" rel="noopener noreferrer">
 		      <div class="twitterBtn">
-		        <img src='https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/twitter-brands-block.svg' alt={'Discord'}/>
+		        <img src='https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/twitter-brands-block.svg' alt={'Twitter'}/>
 		      </div>
 		    </a>
 		  </li>
 			<li>
-		    <a href="https://discordapp.com/invite/hasura" target="_blank" rel="noopener">
+		    <a href="https://discord.gg/UjUP8nz" target="_blank" rel="noopener noreferrer">
 		      <div class="discordBtn">
 		        <img src='https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/discord-brands-block.svg' alt={'Discord'}/>
 		      </div>
@@ -43,7 +43,7 @@ const config = {
       '/codeblock',
     ],
     collapsedNav: [ // add headings here if to be collapsed by default
-      //'/section' // add trailing slash if enabled above
+      '/getting-started' // add trailing slash if enabled above
     ],
     links: [{ text: 'Cardano.org', link: 'https://cardano.org' }],
     frontLine: true, // This toggles collapse arrows
@@ -55,7 +55,7 @@ const config = {
     title: 'Cardano Documentation',
     description: 'Documentation for the Cardano ecosystem ',
     ogImage: null,
-    docsLocation: 'https://cardano.org',
+    docsLocation: 'https://github.com/input-output-hk/docs-site-gatsby-github/tree/master/content',
     favicon: 'pwa-512.png',
   },
   pwa: {
