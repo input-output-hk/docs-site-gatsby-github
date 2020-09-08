@@ -26,8 +26,16 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
   return (
     <li className={calculatedClassName}>
       {hasChildren 
-        ? title && <div className='sectionHeading'>{title}</div>
-        : title && 
+        ? title && <div className='sectionHeading'>
+                    {title}
+                    {config.sidebar.frontLine && title && hasChildren ? (
+                      <button onClick={collapse} aria-label="collapse" className="collapser">
+                        {!isCollapsed ? <OpenedSvg /> : <ClosedSvg />}
+                      </button>
+                    ) : null}
+                    </div>
+        : 
+        title && 
           <Link to={url}>
             {title}
             {!config.sidebar.frontLine && title && hasChildren ? (

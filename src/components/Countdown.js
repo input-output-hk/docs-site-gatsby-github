@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 
 const Clock = styled.div`
+  background: rgba(255, 255, 255, 0.8);
   text-align: center;
   border: 1px solid tomato;
   width:20rem;

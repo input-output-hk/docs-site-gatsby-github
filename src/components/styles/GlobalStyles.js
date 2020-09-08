@@ -443,7 +443,7 @@ export const baseStyles = injectGlobal`
     border-color: transparent currentcolor transparent transparent;
   }
 
-  .hideFrontLine .collapser {
+  .collapser {
     background: transparent;
     border: none;
     outline: none;
@@ -453,12 +453,12 @@ export const baseStyles = injectGlobal`
     cursor: pointer;
   }
 
-  .hideFrontLine .active > a {
+  .showFrontLine .active > a {
     background-color: rgba(82, 129, 247, 1);
     color: #fff !important;
   }
   .firstLevel ul li .collapser svg path {
-    fill: #eee !important;
+    fill: #dcdcdc !important;
   }
   .active .collapser > svg > path {
     fill: #001933 !important;

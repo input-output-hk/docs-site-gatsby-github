@@ -42,12 +42,11 @@ const config = {
       '/section',
       '/codeblock',
     ],
-    collapsedNav: [
-      '/codeblock/', // add trailing slash if enabled above
-      '/section/'
+    collapsedNav: [ // add headings here if to be collapsed by default
+      //'/section' // add trailing slash if enabled above
     ],
     links: [{ text: 'Cardano.org', link: 'https://cardano.org' }],
-    frontLine: true,
+    frontLine: true, // This toggles collapse arrows
     ignoreIndex: true,
     title:
       "<a href='https://why.cardano.org' target='_blank' rel='noopener noreferrer'>Cardano </a><div class='accentCircle'></div><a href='https://www.haskell.org/' target='_blank' rel='noopener noreferrer'>Haskell</a>",
