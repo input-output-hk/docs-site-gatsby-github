@@ -3,6 +3,8 @@ import Link from './link';
 
 import { StyledNextPrevious } from './styles/PageNavigationButtons';
 
+import stripNumbers from '../utils/stripNumbersFromPath'
+
 const NextPrevious = ({ mdx, nav }) => {
   let currentIndex;
 
@@ -11,6 +13,11 @@ const NextPrevious = ({ mdx, nav }) => {
       currentIndex = index;
     }
   });
+
+  // Strip numbers for .url 's below this point
+  nav.map(el => {
+    el.url = stripNumbers(el.url)
+  })
 
   const nextInfo = {};
 

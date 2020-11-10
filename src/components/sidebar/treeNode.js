@@ -3,8 +3,10 @@ import OpenedSvg from '../images/opened';
 import ClosedSvg from '../images/closed';
 import config from '../../../config';
 import Link from '../link';
+import stripNumbers from '../../utils/stripNumbersFromPath'
 
 const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, ...rest }) => {
+  url = stripNumbers(url)
   const isCollapsed = collapsed[url];
 
   const collapse = () => {
@@ -26,14 +28,15 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
   return (
     <li className={calculatedClassName}>
       {hasChildren 
-        ? title && <div className='sectionHeading'>
-                    {title}
-                    {config.sidebar.frontLine && title && hasChildren ? (
-                      <button onClick={collapse} aria-label="collapse" className="collapser">
-                        {!isCollapsed ? <OpenedSvg /> : <ClosedSvg />}
-                      </button>
-                    ) : null}
-                    </div>
+        ? title && 
+          <a className='sectionHeading' onClick={collapse} >
+            {title}
+            {config.sidebar.frontLine && title && hasChildren ? (
+              <button onClick={collapse} aria-label="collapse" className="collapser">
+                {!isCollapsed ? <OpenedSvg /> : <ClosedSvg />}
+              </button>
+            ) : null}
+            </a>
         : 
         title && 
           <Link to={url}>

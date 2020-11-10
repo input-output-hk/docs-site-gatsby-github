@@ -6,6 +6,8 @@ const startCase = require('lodash.startcase');
 
 const config = require('./config');
 
+const stripNumbers = require('./src/utils/stripNumbersFromPath')
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -37,8 +39,9 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Create blog posts pages.
         result.data.allMdx.edges.forEach(({ node }) => {
+          
           createPage({
-            path: node.fields.slug ? node.fields.slug : '/',
+            path: node.fields.slug ? stripNumbers(node.fields.slug) : '/',
             component: path.resolve('./src/templates/docs.js'),
             context: {
               id: node.fields.id,

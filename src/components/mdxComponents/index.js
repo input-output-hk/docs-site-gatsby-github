@@ -4,6 +4,10 @@ import styled from '@emotion/styled';
 import CodeBlock from './codeBlock';
 import AnchorTag from './anchor';
 import Button from './button'
+import InfoBox from './info'
+import Iframe from './iframe'
+import Grid from './grid'
+import GridItem from './gridItem'
 
 const StyledPre = styled('pre')`
   padding: 16px;
@@ -37,7 +41,11 @@ export default {
   ),
   code: CodeBlock,
   a: AnchorTag,
-  button: Button
+  Button: Button,
+  Info: InfoBox,
+  Iframe: Iframe,
+  Grid: Grid,
+  GridItem: GridItem
   // TODO add `img`
   // TODO add `blockquote`
   // TODO add `ul`

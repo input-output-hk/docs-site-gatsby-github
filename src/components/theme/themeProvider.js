@@ -41,6 +41,7 @@ class ThemeProvider extends React.Component {
           location={location}
           isDarkThemeActive={isDarkThemeActive}
           toggleActiveTheme={this.toggleActiveTheme}
+          theme={currentActiveTheme}
         />
         <EmotionThemeProvider theme={currentActiveTheme}>{children}</EmotionThemeProvider>
       </div>

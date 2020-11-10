@@ -3,14 +3,14 @@ const config = {
     pathPrefix: '/',
     siteUrl: 'https://cardano.org',
     gaTrackingId: null,
-    trailingSlash: false,
+    trailingSlash: true,
   },
   header: {
-    logo: 'https://ucarecdn.com/c1477310-438e-4141-bbf8-b866dd0b258a/CardanoRGB_LogoFullWhite.png',
+    logo: '/images/acme.svg',
     logoLink: '/',
     title:
-      "<p>DOCS</p>",
-    githubUrl: 'https://github.com/input-output-hk/docs-site-gatsby-github',
+      "<h1>DOCS</h1>",
+    githubUrl: 'https://github.com/input-output-hk/docs-starter-gatsby-mdx-github',
     helpUrl: '',
     tweetText: '',
     social: `<li>
@@ -27,7 +27,7 @@ const config = {
 		      </div>
 		    </a>
 		  </li>`,
-    links: [{ text: '', link: '' }],
+    links: [{ text: 'Foo', link: '/' }],
     search: {
       enabled: true,
       indexName: 'test_cardano-docs',
@@ -38,34 +38,34 @@ const config = {
   },
   sidebar: {
     forcedNavOrder: [
-      '/introduction', // add trailing slash if enabled above
-      '/section',
-      '/codeblock',
+      '/01-introduction/', // add trailing slash if enabled above
+      // '/02-getting-started/'
     ],
     collapsedNav: [ // add headings here if to be collapsed by default
-      '/getting-started' // add trailing slash if enabled above
+      // '/02-getting-started/', // add trailing slash if enabled above
+      '/getting-started/installing',
     ],
-    links: [{ text: 'Cardano.org', link: 'https://cardano.org' }],
+    links: [{ text: 'Helpful link', link: 'https://www.wikipedia.org/' }],
     frontLine: true, // This toggles collapse arrows
     ignoreIndex: true,
     title:
-      "<a href='https://why.cardano.org' target='_blank' rel='noopener noreferrer'>Cardano </a><div class='accentCircle'></div><a href='https://www.haskell.org/' target='_blank' rel='noopener noreferrer'>Haskell</a>",
+      "<a href='https://www.bbc.co.uk/news' target='_blank' rel='noopener noreferrer'>BBC </a><div class='accentCircle'></div><a href='https://edition.cnn.com/' target='_blank' rel='noopener noreferrer'>CNN</a>",
   },
   siteMetadata: {
-    title: 'Cardano Documentation',
-    description: 'Documentation for the Cardano ecosystem ',
+    title: 'Documentation Starter',
+    description: 'Documentation for X ',
     ogImage: null,
-    docsLocation: 'https://github.com/input-output-hk/docs-site-gatsby-github/tree/master/content',
+    docsLocation: 'https://github.com/input-output-hk/docs-starter-gatsby-mdx-github/tree/master/content',
     favicon: 'pwa-512.png',
   },
   pwa: {
     enabled: false, // disabling this will also remove the existing service worker.
     manifest: {
-      name: 'Cardano Documention',
-      short_name: 'Cardano Docs',
+      name: 'Documention',
+      short_name: 'Docs',
       start_url: '/',
       background_color: '#1d1e21',
-      theme_color: '#5281f7',
+      theme_color: '#3A86FF',
       display: 'standalone',
       crossOrigin: 'use-credentials',
       icons: [
@@ -78,5 +78,4 @@ const config = {
     },
   },
 };
-
 module.exports = config;

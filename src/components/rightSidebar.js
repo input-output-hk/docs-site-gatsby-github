@@ -1,5 +1,6 @@
 import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
+import stripNumbers from '../utils/stripNumbersFromPath'
 
 // import Link from './link';
 import config from '../../config';
@@ -22,19 +23,19 @@ const SidebarLayout = ({ location }) => (
       }
     `}
     render={({ allMdx }) => {
-      let navItems = [];
 
       let finalNavItems;
 
       if (allMdx.edges !== undefined && allMdx.edges.length > 0) {
+
         const navItems = allMdx.edges.map((item, index) => {
-          console.log('allMdx.edges item', item)
           let innerItems;
 
           if (item !== undefined) {
             if (
-              item.node.fields.slug === location.pathname ||
-              config.gatsby.pathPrefix + item.node.fields.slug === location.pathname
+              stripNumbers(item.node.fields.slug) === location.pathname 
+              ||
+              `${stripNumbers(item.node.fields.slug)}/` === location.pathname
             ) {
               if (item.node.tableOfContents.items) {
                 innerItems = item.node.tableOfContents.items.map((innerItem, index) => {

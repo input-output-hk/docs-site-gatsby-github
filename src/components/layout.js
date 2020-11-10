@@ -7,6 +7,49 @@ import mdxComponents from './mdxComponents';
 import Sidebar from './sidebar';
 import RightSidebar from './rightSidebar';
 import config from '../../config.js';
+import Footer from '@input-output-hk/front-end-site-components/components/Footer'
+
+const SiteWrap = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
+  display:flex;
+  flex-direction:column;
+  footer {
+    transition: all 0.2s ease;
+    opacity:0.4;
+    background: transparent;
+    border-top: 1px solid ${({ theme }) => theme.colors.panelBackground};
+    max-width: 100rem;
+    margin: 2rem auto 0 auto;
+    * {
+      color: ${({ theme }) => theme.colors.text};
+    }
+    a img {
+      display:none;
+    }
+    a:hover {
+      color: ${({ theme }) => theme.colors.link};
+    }
+    hr {
+      margin-bottom: 1.5rem;
+    }
+    &:hover {
+      opacity: 1;
+    }
+    @media (max-width:767px) {
+      opacity: 1;
+      padding: 2rem;
+      > div > div {
+        margin: 0;
+      }
+      > div > div > div > div:nth-child(2) {
+        margin-top:1rem;
+      }
+      a div {
+        padding: 0 !important;
+      }
+    }
+  }
+`
 
 const Wrapper = styled('div')`
   display: flex;
@@ -62,40 +105,45 @@ const MaxWidth = styled('div')`
 `;
 
 const LeftSideBarWidth = styled('div')`
-  width: 298px;
+  width: 25rem;
 `;
 
 const RightSideBarWidth = styled('div')`
-  width: 224px;
+  width: 20rem;
 `;
 
 const Layout = ({ children, location, useFwTemplate }) => (
   <ThemeProvider location={location}>
     <MDXProvider components={mdxComponents}>
-      <Wrapper>
-        {useFwTemplate
-          ? <Content>
-              <MaxWidth>{children}</MaxWidth>
-            </Content>
-          : <>
-              <LeftSideBarWidth className={'hiddenMobile'}>
-                <Sidebar location={location} />
-              </LeftSideBarWidth>
-              {config.sidebar.title ? (
-                <div
-                  className={'sidebarTitle sideBarShow'}
-                  dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
-                />
-              ) : null}
-              <Content>
+      <SiteWrap>
+        <Wrapper>
+          {useFwTemplate
+            ? <Content>
                 <MaxWidth>{children}</MaxWidth>
               </Content>
-              <RightSideBarWidth className={'hiddenMobile'}>
-                <RightSidebar location={location} />
-              </RightSideBarWidth>
-            </>
-          }
-      </Wrapper>
+            : <>
+                <LeftSideBarWidth className={'hiddenMobile'}>
+                  <Sidebar location={location} />
+                </LeftSideBarWidth>
+                {config.sidebar.title ? (
+                  <div
+                    className={'sidebarTitle sideBarShow'}
+                    dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
+                  />
+                ) : null}
+                <Content>
+                  <MaxWidth>{children}</MaxWidth>
+                </Content>
+                <RightSideBarWidth className={'hiddenMobile'}>
+                  {location &&
+                    <RightSidebar location={location} />
+                  }
+                </RightSideBarWidth>
+              </>
+            }
+        </Wrapper>
+        <Footer variant='cardano' />
+      </SiteWrap>
     </MDXProvider>
   </ThemeProvider>
 );

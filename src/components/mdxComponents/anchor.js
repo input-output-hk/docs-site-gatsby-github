@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 const checkExternalLinks = (link) => {
-  console.log(link)
   if (/^(https?:)?\/\//.test(link.href)) {
     return `_blank`
   } else {
