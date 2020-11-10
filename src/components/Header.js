@@ -40,6 +40,25 @@ function myFunction() {
   }
 }
 
+const NavBarWrapper = styled('div')`
+  @media(max-width:767px) {
+    .visibleMobile {
+      background: white;
+    }
+  }
+  .navBarBrand img {
+    width:200px;
+  }
+  .navBarDefault {
+    &.light-header {
+      background: rgba(58,134,255,1);
+    }
+    &.dark-header {
+      background: rgba(131,56,236,1);
+    }
+  }
+`
+
 const StyledBgDiv = styled('div')`
   height: 60px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
@@ -53,7 +72,7 @@ const StyledBgDiv = styled('div')`
   }
 `;
 
-const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
+const Header = ({ location, theme, isDarkThemeActive, toggleActiveTheme }) => (
   <StaticQuery
     query={graphql`
       query headerTitleQuery {
@@ -93,8 +112,9 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
       const finalLogoLink = logo.link !== '' ? logo.link : 'https://hasura.io/';
 
       return (
-        <div className={'navBarWrapper'}>
-          <nav className={'navBarDefault'}>
+        <NavBarWrapper className={'navBarWrapper'}>
+          {console.log('theme', theme)}
+          <nav className={`${theme.label === 'light' ? 'light-header' : 'dark-header'}  navBarDefault`}>
             <div className={'navBarHeader'}>
               <Link to={finalLogoLink} className={'navBarBrand'}>
                 <img
@@ -103,10 +123,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
                   alt={'logo'}
                 />
               </Link>
-              <div
-                className={'headerTitle displayInline'}
-                dangerouslySetInnerHTML={{ __html: headerTitle }}
-              />
+              <div dangerouslySetInnerHTML={{ __html: headerTitle }} />
             </div>
             {config.header.social ? (
               <ul
@@ -210,7 +227,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
               </div>
             ) : null}
           </StyledBgDiv>
-        </div>
+        </NavBarWrapper>
       );
     }}
   />

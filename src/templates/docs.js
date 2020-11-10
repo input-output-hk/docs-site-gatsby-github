@@ -13,11 +13,24 @@ import styled from '@emotion/styled';
 
 const forcedNavOrder = config.sidebar.forcedNavOrder;
 
+const StyledTemplate = styled.div`
+  .pageWrap {
+    max-width:750px;
+  }
+  .pageWrap.fullWidthPage {
+    max-width:80vw;
+    margin: 0 auto;
+    @media(max-width:959px) {
+      max-width:95vw;
+    }
+  }
+`
+
 const TitleElement = styled.div`
-  &.fullWidthPage {
+  /* &.fullWidthPage {
     max-width:60rem;
     margin: 0 auto;
-  }
+  } */
 `
 
 export default class MDXRuntimeTest extends Component {
@@ -25,7 +38,7 @@ export default class MDXRuntimeTest extends Component {
     const { data } = this.props;
 
     if (!data) {
-      return null;
+      return this.props.children;
     }
     const {
       allMdx,
@@ -82,6 +95,8 @@ export default class MDXRuntimeTest extends Component {
 
     const isFullWidth = mdx.frontmatter.fullWidthTemplate
 
+    const hasPageHeading = mdx.frontmatter.hasPageHeading
+
     let canonicalUrl = config.gatsby.siteUrl;
 
     canonicalUrl =
@@ -89,43 +104,49 @@ export default class MDXRuntimeTest extends Component {
     canonicalUrl = canonicalUrl + mdx.fields.slug;
 
     return (
-      <Layout {...this.props} useFwTemplate={isFullWidth}>
-        <Helmet>
-          {metaTitle ? <title>{metaTitle}</title> : null}
-          {metaTitle ? <meta name="title" content={metaTitle} /> : null}
-          {metaDescription ? <meta name="description" content={metaDescription} /> : null}
-          {metaTitle ? <meta property="og:title" content={metaTitle} /> : null}
-          {metaDescription ? <meta property="og:description" content={metaDescription} /> : null}
-          {metaTitle ? <meta property="twitter:title" content={metaTitle} /> : null}
-          {metaDescription ? (
-            <meta property="twitter:description" content={metaDescription} />
-          ) : null}
-          <link rel="canonical" href={canonicalUrl} />
-        </Helmet>
+      <StyledTemplate useFwTemplate={isFullWidth}>
+        <Layout {...this.props} useFwTemplate={isFullWidth}>
+          <Helmet>
+            {metaTitle ? <title>{metaTitle}</title> : null}
+            {metaTitle ? <meta name="title" content={metaTitle} /> : null}
+            {metaDescription ? <meta name="description" content={metaDescription} /> : null}
+            {metaTitle ? <meta property="og:title" content={metaTitle} /> : null}
+            {metaDescription ? <meta property="og:description" content={metaDescription} /> : null}
+            {metaTitle ? <meta property="twitter:title" content={metaTitle} /> : null}
+            {metaDescription ? (
+              <meta property="twitter:description" content={metaDescription} />
+            ) : null}
+            <link rel="canonical" href={canonicalUrl} />
+          </Helmet>
 
-        <TitleElement className={`titleWrapper ${isFullWidth && `fullWidthPage`}`}>
-          <StyledHeading>{mdx.fields.title}</StyledHeading>
-          {!isFullWidth &&
-            <Edit className={'mobileView'}>
-              {docsLocation && (
-                <Link className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
-                  <img src={gitHub} alt={'Github logo'} /> Edit on GitHub
-                </Link>
-              )}
-            </Edit>
-          }
-        </TitleElement>
+          <div className={`pageWrap ${isFullWidth ? `fullWidthPage` : ``}`}>
+            {(hasPageHeading || hasPageHeading === null) && 
+              <TitleElement className={`titleWrapper`}>
+                <StyledHeading>{mdx.fields.title}</StyledHeading>
+                {!isFullWidth &&
+                  <Edit className={'mobileView'}>
+                    {docsLocation && (
+                      <Link className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
+                        <img src={gitHub} alt={'Github logo'} /> Edit on GitHub
+                      </Link>
+                    )}
+                  </Edit>
+                }
+              </TitleElement>
+              }
 
-        <StyledMainWrapper className={isFullWidth && `fullWidthPage`}>
-          <MDXRenderer>{mdx.body}</MDXRenderer>
-        </StyledMainWrapper>
-
-        {!isFullWidth &&
-          <div className={'addPaddTopBottom'}>
-            <NextPrevious mdx={mdx} nav={nav} />
+            <StyledMainWrapper>
+              <MDXRenderer>{mdx.body}</MDXRenderer>
+            </StyledMainWrapper>
           </div>
-        }
-      </Layout>
+          
+          {!isFullWidth &&
+            <div className={'addPaddTopBottom'}>
+              <NextPrevious mdx={mdx} nav={nav} />
+            </div>
+          }
+        </Layout>
+      </StyledTemplate>
     );
   }
 }
@@ -155,6 +176,7 @@ export const pageQuery = graphql`
         metaTitle
         metaDescription
         fullWidthTemplate
+        hasPageHeading
       }
     }
     allMdx {

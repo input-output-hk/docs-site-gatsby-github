@@ -14,7 +14,7 @@ const Clock = styled.div`
   }
 `
 
-const CountDown = (props) => {
+const CountDown = () => {
   const [counter, setCounter] = React.useState(99);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const CountDown = (props) => {
   }, [counter]);
 
   return (
-    <Clock className="CountDown" {...props}>
+    <Clock className="CountDown">
       <h2>Countdown:</h2>
       <h1>{counter}</h1>
     </Clock>

@@ -6,6 +6,7 @@ const config = require("./config");
 const plugins = [
   'gatsby-plugin-sitemap',
   'gatsby-plugin-sharp',
+  'gatsby-transformer-sharp',
   {
     resolve: `gatsby-plugin-layout`,
     options: {
@@ -22,6 +23,13 @@ const plugins = [
     }
   },
   {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `images`,
+      path: `${__dirname}/content/images`,
+    },
+  },
+  {
     resolve: 'gatsby-plugin-mdx',
     options: {
       gatsbyRemarkPlugins: [
@@ -31,6 +39,9 @@ const plugins = [
             maxWidth: 1035,
             sizeByPixelDensity: true
           }
+        },
+        {
+          resolve: 'gatsby-remark-mermaid'
         },
         {
           resolve: 'gatsby-remark-copy-linked-files'
@@ -50,6 +61,14 @@ const plugins = [
       anonymize: false,
     },
   },
+  // {
+  //   resolve: 'gatsby-transformer-remark',
+  //   options: {
+  //     plugins: [
+  //       'gatsby-remark-mermaid'
+  //     ]
+  //   }
+  // }
 ];
 
 // check and add algolia

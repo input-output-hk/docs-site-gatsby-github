@@ -39,7 +39,6 @@ export const Edit = styled('div')`
 `;
 
 export const StyledMainWrapper = styled.div`
-  max-width: 750px;
   color: ${props => props.theme.colors.text};
 
   ul,
@@ -73,9 +72,5 @@ export const StyledMainWrapper = styled.div`
 
   @media (max-width: 767px) {
     padding: 0 15px;
-  }
-  &.fullWidthPage {
-    max-width:60rem;
-    margin: 0 auto;
   }
 `;

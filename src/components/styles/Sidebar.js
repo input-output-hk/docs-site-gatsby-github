@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import Link from '../link';
+
 
 export const Sidebar = styled('aside')`
   width: 100%;
@@ -55,9 +57,9 @@ export const Sidebar = styled('aside')`
 export const ListItem = styled(({ className, active, level, ...props }) => {
   return (
     <li className={className}>
-      <a href={props.to} {...props}>
+      <Link to={props.to} {...props}>
         {props.children}
-      </a>
+      </Link>
     </li>
   );
 })`
